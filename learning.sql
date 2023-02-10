@@ -58,5 +58,6 @@ SET user_name = 'Updated value'
 WHERE user_id = 3;
 
 
+DESCRIBE users;
 
 SELECT * FROM users;
