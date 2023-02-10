@@ -86,3 +86,44 @@ DESCRIBE users;
 
 
 -- Querying Information from the DATABASE; Using the SELECT key word
+DROP TABLE users;
+
+SELECT * FROM users;
+
+SELECT cgpa FROM users;
+
+SELECT user_name, cgpa FROM users;
+
+-- Can also be written as;
+SELECT users.user_name, users.phone_number FROM users;
+
+-- Ordering queried info
+SELECT users.user_name, users.cgpa FROM users ORDER BY user_name; --ordered ascending order
+
+SELECT users.user_name, users.cgpa FROM users ORDER BY user_name DESC; --ordered Descending order
+
+SELECT * FROM users
+ORDER BY user_id DESC;
+
+SELECT * FROM users LIMIT 2;
+
+SELECT * FROM users ORDER BY user_name ASC LIMIT 2;
+
+-- Filtering
+SELECT * FROM users
+WHERE user_name = 'No name';
+
+SELECT user_id, user_name FROM users
+WHERE user_name = 'No name';
+
+-- <, >, <>(Not equal to), <=, >=, =, AND, OR
+SELECT user_id, user_name FROM users
+WHERE user_name <> 'No name';
+
+SELECT user_name, cgpa FROM users
+WHERE cgpa <= 3.95 AND user_name <> 'Jacob';
+
+-- Using the IN key word to ease querying a lot
+SELECT cgpa, user_name FROM users
+WHERE user_name IN ('No name', 'Jill', 'Jamusi')
+ORDER BY user_name;
