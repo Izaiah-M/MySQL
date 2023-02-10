@@ -1,5 +1,8 @@
 -- Active: 1675691410365@@127.0.0.1@3306@izaiah
 
+--@block
+-- use izaiah;
+
 DROP TABLE users;
 
 CREATE TABLE users (
