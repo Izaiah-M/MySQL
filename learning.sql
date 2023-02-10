@@ -57,7 +57,32 @@ UPDATE users
 SET user_name = 'Updated value'
 WHERE user_id = 3;
 
+UPDATE users
+SET user_name = 'Using OR parameter'
+WHERE user_name = 'Jacob' OR user_name = 'Updated value';
+
+UPDATE users
+SET user_name = 'Jacob', cgpa = 3.75
+WHERE user_id = 3;
+
+UPDATE users
+SET user_name = 'Without WHERE';
+
+-- Deleting ROWS
+
+DELETE FROM users; --Deletes all the row contents and leaves you with an empty table
+
+DELETE FROM users
+WHERE user_id = 3;
+
+DELETE FROM users
+WHERE user_id = 6 AND cgpa = 3.65;
+
+
+
+SELECT * FROM users;
 
 DESCRIBE users;
 
-SELECT * FROM users;
+
+-- Querying Information from the DATABASE; Using the SELECT key word
