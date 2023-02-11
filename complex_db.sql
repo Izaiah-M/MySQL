@@ -73,3 +73,129 @@ SET branch_id = 1
 WHERE emp_id = 100;
 
 INSERT INTO employee VALUES(101, 'Jan', 'Levinson', '1961-05-11', 'F', 110000, 100, 1);
+
+-- Scranton
+INSERT INTO employee VALUES(102, 'Michael', 'Scott', '1964-03-15', 'M', 75000, 100, NULL);
+
+INSERT INTO branch VALUES(2, 'Scranton', 102, '1992-04-06');
+
+UPDATE employee
+SET branch_id = 2
+WHERE emp_id = 102;
+
+INSERT INTO employee VALUES(103, 'Angela', 'Martin', '1971-06-25', 'F', 63000, 102, 2);
+INSERT INTO employee VALUES(104, 'Kelly', 'Kapoor', '1980-02-05', 'F', 55000, 102, 2);
+INSERT INTO employee VALUES(105, 'Stanley', 'Hudson', '1958-02-19', 'M', 69000, 102, 2);
+
+-- Stamford
+INSERT INTO employee VALUES(106, 'Josh', 'Porter', '1969-09-05', 'M', 78000, 100, NULL);
+
+INSERT INTO branch VALUES(3, 'Stamford', 106, '1998-02-13');
+
+UPDATE employee
+SET branch_id = 3
+WHERE emp_id = 106;
+
+INSERT INTO employee VALUES(107, 'Andy', 'Bernard', '1973-07-22', 'M', 65000, 106, 3);
+INSERT INTO employee VALUES(108, 'Jim', 'Halpert', '1978-10-01', 'M', 71000, 106, 3);
+
+
+-- BRANCH SUPPLIER
+INSERT INTO branch_supplier VALUES
+(2, 'Hammer Mill', 'Paper'),
+(2, 'Uni-ball', 'Writing Utensils'),
+(3, 'Patriot Paper', 'Paper'),
+(2, 'J.T. Forms & Labels', 'Custom Forms'),
+(3, 'Uni-ball', 'Writing Utensils'),
+(3, 'Hammer Mill', 'Paper'),
+(3, 'Stamford Lables', 'Custom Forms');
+
+-- CLIENT
+INSERT INTO client VALUES
+(400, 'Dunmore Highschool', 2),
+(401, 'Lackawana Country', 2),
+(402, 'FedEx', 3),
+(403, 'John Daly Law, LLC', 3),
+(404, 'Scranton Whitepages', 2),
+(405, 'Times Newspaper', 3),
+(406, 'FedEx', 2);
+
+-- WORKS_WITH
+INSERT INTO works_with VALUES
+(105, 400, 55000),
+(102, 401, 267000),
+(108, 402, 22500),
+(107, 403, 5000),
+(108, 403, 12000),
+(105, 404, 33000),
+(107, 405, 26000),
+(102, 406, 15000),
+(105, 406, 130000);
+
+SELECT * FROM employee;
+SELECT * FROM client;
+SELECT * FROM works_with;
+SELECT * FROM branch_supplier;
+
+SELECT * FROM branch;
+
+-- Querrying from the company DATABASE
+SELECT first_name, last_name FROM employee;
+
+-- Can also do;
+SELECT first_name AS fore_name, last_name AS surname FROM employee; --Notice the column name changes to what we have set AS
+
+-- Find out all the different genders
+SELECT DISTINCT sex
+FROM employee; --we use distinct so that we don't get repeated values.
+
+
+-- Functions in SQL
+
+-- Find the number of employees
+SELECT COUNT(emp_id)
+FROM employee
+WHERE sex = 'F' AND birth_day > '1970-01-01';
+
+-- find the average of all employee's salaries
+SELECT AVG(salary) FROM employee
+WHERE sex = 'M';
+
+SELECT SUM(salary) FROM employee;
+
+-- Find out how many males and females are in the company
+SELECT COUNT(sex), sex 
+FROM employee
+GROUP BY sex;
+
+-- Find the total sales of each sales man
+SELECT  emp_id, SUM(total_sales)
+FROM works_with
+GROUP BY emp_id;
+
+
+-- WILD CARDS-get data that matches a specific prompt or pattern.
+
+-- Find any client's who are an LLC
+SELECT *
+FROM client
+WHERE client_name LIKE '%LLC';
+
+-- % reperesents any number of random characters.
+-- %% helps find any thing that has the specified characters somewhere in its name.
+
+-- Find any Branch suppliers that are in the label business.
+SELECT *
+FROM branch_supplier
+WHERE supplier_name LIKE '% Label%';
+
+-- Find any employee born in October
+-- _ is for one character.
+SELECT *
+FROM employee
+WHERE birth_day LIKE '____-02%'; --The first four underscores represent a singke character each for a number in the year, the  -10 is the month we are looking for and then the % is for the resetof the characters   i.e day
+
+-- Find any clients who are schools
+SELECT *
+FROM client
+WHERE client_name LIKE '%school%';
