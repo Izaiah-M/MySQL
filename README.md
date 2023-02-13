@@ -1,3 +1,3 @@
 # Learning mySQL in detail
 
-This is my journey to MySQL.
+This is my journey to MySQL.😁
