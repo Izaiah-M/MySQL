@@ -199,3 +199,5 @@ WHERE birth_day LIKE '____-02%'; --The first four underscores represent a singke
 SELECT *
 FROM client
 WHERE client_name LIKE '%school%';
+
+-- Continuing
