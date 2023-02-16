@@ -201,3 +201,20 @@ FROM client
 WHERE client_name LIKE '%school%';
 
 -- Continuing
+-- UNIONS
+
+-- Find a list of employee and branch names
+SELECT first_name FROM employee;
+
+SELECT branch_name FROM branch;
+
+-- Using UNION
+SELECT first_name
+FROM employee
+UNION -- Unions work when you are getting things of same data type and same number columns being requested.
+SELECT branch_name
+FROM  branch;  --returns all the info in one column.
+
+-- USING JOINS
+
+
