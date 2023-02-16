@@ -218,8 +218,20 @@ FROM  branch;  --returns all the info in one column.
 -- USING JOINS
 INSERT INTO branch VALUES(4, 'Buffalo', NULL, NULL);
 
+-- Find all branches and the names of their managers.
+
 SELECT employee.emp_id, employee.first_name, branch.branch_name
 FROM employee
-JOIN branch
+JOIN branch -- This normal join is known as the INNER JOIN, so it will only give info related to the emp_id and mgr_id, which is why it gives off 3 rows
+ON employee.emp_id = branch.mgr_id;
+
+SELECT employee.emp_id, employee.first_name, branch.branch_name
+FROM employee
+LEFT JOIN branch -- For LEFT join, it will retrun the necessarry info but include all the contents of the table on the left(i.e employee), but will include not everything on the right side(brance), same logic for RIGHT JOIN
+ON employee.emp_id = branch.mgr_id;
+
+SELECT employee.emp_id, employee.first_name, branch.branch_name
+FROM employee
+RIGHT JOIN branch -- For LEFT join, it will retrun the necessarry info but include all the contents of the table on the left(i.e employee), but will include not everything on the right side(brance), same logic for RIGHT JOIN
 ON employee.emp_id = branch.mgr_id;
 
